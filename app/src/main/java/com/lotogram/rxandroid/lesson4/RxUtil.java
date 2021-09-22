@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -20,6 +21,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -257,6 +259,94 @@ public class RxUtil {
                     @Override
                     public void onComplete() {
                         Log.d(TAG, "onComplete: ");
+                    }
+                });
+    }
+
+    public static void map() {
+        Log.d(TAG, "使用RxAndroid的map操作符");
+        //map操作符使参数类型进行转换
+        Observable.fromArray(0, 1, 2, 3, 4, 5, 6)
+                //第一个范型为：转换前的类型
+                //第二个范型为：转换后的类型
+                .map(new Function<Integer, String>() {
+                    @Override
+                    public String apply(@NonNull Integer integer) {
+                        return integer + "";
+                    }
+                })
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        Log.d(TAG, "onSubscribe");
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        Log.d(TAG, "onNext: " + s);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete");
+                    }
+                });
+    }
+
+    public static void flatMap() {
+        ArrayList<Course> courses1 = new ArrayList<>();
+        courses1.add(new Course(1, "语文"));
+        courses1.add(new Course(2, "数学"));
+        courses1.add(new Course(3, "英语"));
+        courses1.add(new Course(4, "科学"));
+        Student student1 = new Student(1, "小明", courses1);
+
+        ArrayList<Course> courses2 = new ArrayList<>();
+        courses2.add(new Course(1, "计算机"));
+        courses2.add(new Course(2, "微积分"));
+        courses2.add(new Course(3, "单片机"));
+        courses2.add(new Course(4, "高频电路"));
+        Student student2 = new Student(2, "小亮", courses2);
+
+        Log.d(TAG, "使用RxAndroid的flatMap操作符");
+        //map操作符使参数类型进行转换
+        Observable.fromArray(student1, student2)
+                //第一个范型为：转换前的类型
+                //第二个范型为：转换后的类型
+                .flatMap(new Function<Student, Observable<Course>>() {
+                    @Override
+                    public Observable<Course> apply(@NonNull Student student) {
+                        Course[] courses = new Course[student.getCourses().size()];
+                        for (int i = 0; i < student.getCourses().size(); i++) {
+                            courses[i] = student.getCourses().get(i);
+                        }
+                        return Observable.fromArray(courses);
+                    }
+                })
+                .subscribe(new Observer<Course>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        Log.d(TAG, "onSubscribe");
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Course course) {
+                        Log.d(TAG, "onNext: " + course.getName());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete");
                     }
                 });
     }

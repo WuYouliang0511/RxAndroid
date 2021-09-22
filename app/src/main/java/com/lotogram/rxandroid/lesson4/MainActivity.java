@@ -52,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
         RxUtil.filter();
     }
 
+    public void onMap(View view) {
+        //使用RxAndroid的map操作符
+        RxUtil.map();
+    }
+
+    public void onFlatMap(View view) {
+        //使用RxAndroid的flatMap操作符
+        RxUtil.flatMap();
+    }
+
     public void onAsyncTask(View view) {
         //使用RxAndroid进行网络异步操作
         RxUtil.asyncTask(findViewById(R.id.image));

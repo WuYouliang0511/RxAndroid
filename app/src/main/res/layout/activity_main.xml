@@ -1,71 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:ignore="HardcodedText">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onBase"
-        android:text="RxAndroid的基本用法(最常用)"
-        android:textAllCaps="false" />
+        android:orientation="vertical"
+        tools:ignore="HardcodedText">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onThread"
-        android:text="Observable和Observer的所在线程"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onBase"
+            android:text="RxAndroid的基本用法(最常用)"
+            android:textAllCaps="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onFromArray"
-        android:text="使用RxAndroid的from操作符"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onThread"
+            android:text="Observable和Observer的所在线程"
+            android:textAllCaps="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onInterval"
-        android:text="使用RxAndroid的interval操作符"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onFromArray"
+            android:text="使用RxAndroid的from操作符"
+            android:textAllCaps="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onJust"
-        android:text="使用RxAndroid的just操作符"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onInterval"
+            android:text="使用RxAndroid的interval操作符"
+            android:textAllCaps="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onRange"
-        android:text="使用RxAndroid的range操作符"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onJust"
+            android:text="使用RxAndroid的just操作符"
+            android:textAllCaps="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onFilter"
-        android:text="使用RxAndroid的filter操作符"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRange"
+            android:text="使用RxAndroid的range操作符"
+            android:textAllCaps="false" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onAsyncTask"
-        android:text="使用RxAndroid进行网络异步操作"
-        android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onFilter"
+            android:text="使用RxAndroid的filter操作符"
+            android:textAllCaps="false" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        tools:ignore="ContentDescription" />
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onMap"
+            android:text="使用RxAndroid的map操作符"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onFlatMap"
+            android:text="使用RxAndroid的flatMap操作符"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onAsyncTask"
+            android:text="使用RxAndroid进行网络异步操作"
+            android:textAllCaps="false" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            tools:ignore="ContentDescription" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>
