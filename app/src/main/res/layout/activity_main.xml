@@ -76,6 +76,20 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onDoOnNext"
+            android:text="使用RxAndroid的doOnNext操作符"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onReplace"
+            android:text="使用RxAndroid的Action代替onNext"
+            android:textAllCaps="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="onAsyncTask"
             android:text="使用RxAndroid进行网络异步操作"
             android:textAllCaps="false" />

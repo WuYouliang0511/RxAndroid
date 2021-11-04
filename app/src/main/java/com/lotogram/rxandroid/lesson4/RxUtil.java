@@ -21,6 +21,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -142,9 +144,9 @@ public class RxUtil {
         Observable.interval(500, 500, TimeUnit.MILLISECONDS)
                 .take(60)//执行次数
                 .takeWhile(aLong -> {
-                    //判断是否停止
+                    //判断是否执行
                     Log.d(TAG, "takeWhile截止条件判断: " + aLong);
-                    return aLong < 40;
+                    return aLong >= 0 && aLong < 40;
                 })
                 .takeUntil(aLong -> {
                     //判断是否停止
@@ -321,6 +323,7 @@ public class RxUtil {
                 .flatMap(new Function<Student, Observable<Course>>() {
                     @Override
                     public Observable<Course> apply(@NonNull Student student) {
+                        Log.d(TAG, "student: " + student.getName());
                         Course[] courses = new Course[student.getCourses().size()];
                         for (int i = 0; i < student.getCourses().size(); i++) {
                             courses[i] = student.getCourses().get(i);
@@ -349,6 +352,56 @@ public class RxUtil {
                         Log.d(TAG, "onComplete");
                     }
                 });
+    }
+
+    public static void doOnNext() {
+        Log.d(TAG, "使用RxAndroid的doOnNext操作符");
+        Observable.fromArray(1, 3, 5, 7, 9)
+                .flatMap(new Function<Integer, Observable<Integer>>() {
+                    @Override
+                    public Observable<Integer> apply(@NonNull Integer integers) {
+                        Log.d(TAG, "flatMap扁平化映射");
+                        return Observable.just(integers + 1);
+                    }
+                })
+                .doOnNext(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) {
+                        Log.d(TAG, "doOnNext进行数据存储等操作");
+                    }
+                })
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        Log.d(TAG, "onSubscribe");
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Integer integer) {
+                        Log.d(TAG, "onNext: " + integer);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "onComplete");
+                    }
+                });
+    }
+
+    public static void replace(){
+//        Observable.fromArray(1,2,3,4,5,6,7,8,9)
+//                .subscribe(new Action(){
+//
+//                    @Override
+//                    public void run() throws Exception {
+//
+//                    }
+//                })
     }
 
     public static void asyncTask(ImageView imageView) {

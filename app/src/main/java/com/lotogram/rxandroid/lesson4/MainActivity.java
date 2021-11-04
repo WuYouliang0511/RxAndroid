@@ -62,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
         RxUtil.flatMap();
     }
 
+    public void onDoOnNext(View view) {
+        //使用RxAndroid的doOnNext操作符
+        RxUtil.doOnNext();
+    }
+
+    public void onReplace(View view) {
+        //使用RxAndroid的Action代替onNext
+        RxUtil.replace();
+    }
+
     public void onAsyncTask(View view) {
         //使用RxAndroid进行网络异步操作
         RxUtil.asyncTask(findViewById(R.id.image));
